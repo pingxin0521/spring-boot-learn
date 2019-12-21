@@ -21,6 +21,7 @@
         <module>spring-boot-0-quickstart</module>
         <module>spring-boot-1-Web</module>
         <module>spring-boot-2-Async</module>
+        <module>spring-boot-3-test</module>
 
     </modules>
 
