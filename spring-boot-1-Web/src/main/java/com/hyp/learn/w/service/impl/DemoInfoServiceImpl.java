@@ -1,7 +1,7 @@
 package com.hyp.learn.w.service.impl;
 
-import com.hyp.learn.w.model.DemoInfo;
 import com.hyp.learn.w.dao.DemoInfoDAO;
+import com.hyp.learn.w.model.DemoInfo;
 import com.hyp.learn.w.service.DemoInfoService;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class DemoInfoServiceImpl implements DemoInfoService {
 
 	@Resource
-	DemoInfoDAO dao;
+    DemoInfoDAO dao;
 
 	@Override
 	public List<DemoInfo> insertDemoInfo(DemoInfo demo) {

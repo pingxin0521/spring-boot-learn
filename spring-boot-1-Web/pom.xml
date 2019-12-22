@@ -14,7 +14,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>spring-boot-1-Web</name>
+    <username>spring-boot-1-Web</username>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
