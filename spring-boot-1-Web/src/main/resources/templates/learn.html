@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 导入thymeleaf的名称空间，引入后页面就会提示thymeleaf语法 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>learn Resources</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <table border="1" cellpadding="0" cellspacing="1" width="100%">
+        <tr>
+            <td>作者</td>
+            <td>教程名称</td>
+            <td>地址</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="learn : ${learnList}">
+            <td th:text="${learn.author}"></td>
+            <td th:text="${learn.title}"></td>
+            <td><a target="_blank" th:href="${learn.url}">点我</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

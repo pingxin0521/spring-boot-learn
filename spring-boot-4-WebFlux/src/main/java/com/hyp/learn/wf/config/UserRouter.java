@@ -21,10 +21,10 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
  * Include in com.hyp.learn.wf.config
  * hyp create at 19-12-22
  **/
-@Configuration
+//@Configuration
 public class UserRouter {
 
-    @Bean
+//    @Bean
     public RouterFunction<ServerResponse> userListRouterFunction() {
         return route(GET("/users2/list"),
                 new HandlerFunction<ServerResponse>() {
@@ -43,7 +43,7 @@ public class UserRouter {
                 });
     }
 
-    @Bean
+//    @Bean
     public RouterFunction<ServerResponse> userGetRouterFunction() {
         return route(GET("/users2/get"),
                 new HandlerFunction<ServerResponse>() {
@@ -62,7 +62,7 @@ public class UserRouter {
                 });
     }
 
-    @Bean
+//    @Bean
     public RouterFunction<ServerResponse> demoRouterFunction() {
         return route(GET("/users2/demo"), request -> ok().bodyValue("demo"));
     }

@@ -13,7 +13,7 @@
     <artifactId>spring-boot-2-Async</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <username>spring-boot-2-Async</username>
+    <name>spring-boot-2-Async</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 

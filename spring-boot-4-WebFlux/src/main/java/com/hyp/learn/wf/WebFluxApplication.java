@@ -12,6 +12,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
  **/
 
 @SpringBootApplication
+@EnableWebFlux
 public class WebFluxApplication {
 
     public static void main(String[] args) {

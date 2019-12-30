@@ -40,7 +40,7 @@ public class LearnResourceController {
         learnList.add(bean);
         bean =new LearnResouce("林祥纤博客系列","从零开始学Spring Boot ","http://412887952-qq-com.iteye.com/category/356333");
         learnList.add(bean);
-        ModelAndView modelAndView = new ModelAndView("/index");
+        ModelAndView modelAndView = new ModelAndView("/learn");
         modelAndView.addObject("learnList", learnList);
         return modelAndView;
     }

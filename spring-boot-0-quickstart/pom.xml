@@ -13,7 +13,7 @@
     <artifactId>spring-boot-0-quickstart</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <username>spring-boot-0-quickstart</username>
+    <name>spring-boot-0-quickstart</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 

@@ -1,5 +1,6 @@
 package com.hyp.learn.test.controller;
 
+import com.hyp.learn.qs.controller.HelloWorldController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -14,7 +14,6 @@ import org.springframework.web.reactive.config.EnableWebFlux;
  * hyp create at 19-12-22
  **/
 @Configuration
-@EnableWebFlux
 public class WebFluxConfiguration {
 
     @Bean
@@ -22,5 +21,7 @@ public class WebFluxConfiguration {
                                                      RequestedContentTypeResolver requestedContentTypeResolver) {
         return new GlobalResponseBodyHandler(serverCodecConfigurer.getWriters(), requestedContentTypeResolver);
     }
+
+
 
 }

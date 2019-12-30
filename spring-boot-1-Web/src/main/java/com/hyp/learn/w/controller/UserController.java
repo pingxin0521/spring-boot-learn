@@ -1,12 +1,16 @@
 package com.hyp.learn.w.controller;
 
-import com.hyp.learn.w.vo.UserVO;
 import com.hyp.learn.w.dto.UserAddDTO;
 import com.hyp.learn.w.dto.UserUpdateDTO;
+import com.hyp.learn.w.vo.UserVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * GET	/users	查询用户列表
@@ -20,8 +24,11 @@ import java.util.List;
  * Include in com.hyp.learn.w.controller
  * hyp create at 19-12-21
  **/
+
+
 @RestController
 @RequestMapping("/users")
+@Api(tags = "用户 API 接口")
 public class UserController {
 
     @RequestMapping(name = "/getUser", method = RequestMethod.POST)
@@ -33,7 +40,7 @@ public class UserController {
         return userVO;
     }
 
-    @RequestMapping("/getUsers")
+    @RequestMapping(value = "/getUsers",method = RequestMethod.GET)
     public List<UserVO> getUsers() {
         List<UserVO> userVOS = new ArrayList<UserVO>();
         UserVO userVO1 = new UserVO();
@@ -49,12 +56,8 @@ public class UserController {
         return userVOS;
     }
 
-    /**
-     * 查询用户列表
-     *
-     * @return 用户列表
-     */
-    @GetMapping("")
+    @GetMapping("/list")
+    @ApiOperation(value = "查询用户列表", notes = "目前仅仅是作为测试，所以返回用户全列表")
     public List<UserVO> list() {
         // 查询列表
         List<UserVO> result = new ArrayList<>();
@@ -65,61 +68,39 @@ public class UserController {
         return result;
     }
 
-    /**
-     * 获得指定用户编号的用户
-     *
-     * @param id 用户编号
-     * @return 用户
-     */
-    @GetMapping("/{id}")
-    public UserVO get(@PathVariable("id") Integer id) {
+    @GetMapping("/get")
+    @ApiOperation("获得指定用户编号的用户")
+    @ApiImplicitParam(name = "id", value = "用户编号", paramType = "query", dataTypeClass = Integer.class, required = true, example = "1024")
+    public UserVO get(@RequestParam("id") Integer id) {
         // 查询并返回用户
-        return new UserVO().setId(id).setName("username:" + id);
+        return new UserVO().setId(id).setName(UUID.randomUUID().toString());
     }
 
-    /**
-     * 添加用户
-     *
-     * @param addDTO 添加用户信息 DTO
-     * @return 添加成功的用户编号
-     */
     @PostMapping("add")
+    @ApiOperation("添加用户")
     public Integer add(UserAddDTO addDTO) {
         // 插入用户记录，返回编号
-        Integer returnId = 1;
+        Integer returnId = UUID.randomUUID().hashCode();
         // 返回用户编号
         return returnId;
     }
 
-    /**
-     * 更新指定用户编号的用户
-     *
-     * @param id        用户编号
-     * @param updateDTO 更新用户信息 DTO
-     * @return 是否修改成功
-     */
-    @PutMapping("/{id}")
-    public Boolean update(@PathVariable("id") Integer id, UserUpdateDTO updateDTO) {
-        // 将 id 设置到 updateDTO 中
-        updateDTO.setId(id);
+    @PostMapping("/update")
+    @ApiOperation("更新指定用户编号的用户")
+    public Boolean update(UserUpdateDTO updateDTO) {
         // 更新用户记录
         Boolean success = true;
         // 返回更新是否成功
         return success;
     }
 
-    /**
-     * 删除指定用户编号的用户
-     *
-     * @param id 用户编号
-     * @return 是否删除成功
-     */
-    @DeleteMapping("/{id}")
-    public Boolean delete(@PathVariable("id") Integer id) {
+    @PostMapping("/delete")
+    @ApiOperation(value = "删除指定用户编号的用户")
+    @ApiImplicitParam(name = "id", value = "用户编号", paramType = "query", dataTypeClass = Integer.class, required = true, example = "1024")
+    public Boolean delete(@RequestParam("id") Integer id) {
         // 删除用户记录
         Boolean success = false;
         // 返回是否更新成功
         return success;
     }
-
 }

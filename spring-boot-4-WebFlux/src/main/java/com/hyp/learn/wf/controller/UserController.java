@@ -1,6 +1,9 @@
 package com.hyp.learn.wf.controller;
 
 
+import com.hyp.learn.wf.commons.CommonCode;
+import com.hyp.learn.wf.commons.CommonResult;
+import com.hyp.learn.wf.commons.ServiceException;
 import com.hyp.learn.wf.dto.UserAddDTO;
 import com.hyp.learn.wf.dto.UserUpdateDTO;
 import com.hyp.learn.wf.service.impl.UserService;
@@ -61,6 +64,50 @@ public class UserController {
         // 返回
         return Mono.just(user);
     }
+
+
+    /**
+     * 获得指定用户编号的用户
+     *
+     * @param id 用户编号
+     * @return 用户
+     */
+    @GetMapping("/get2")
+    public Mono<CommonResult> get21(@RequestParam("id") Integer id) {
+        // 查询用户
+        UserVO user = new UserVO().setId(id).setUsername("username:" + id);
+        // 返回
+        return Mono.just(CommonResult.success(user));
+    }
+
+    /**
+     * 获得指定用户编号的用户
+     *
+     * @param id 用户编号
+     * @return 用户
+     */
+    @GetMapping("/get3")
+    public UserVO get3(@RequestParam("id") Integer id) {
+        // 查询用户
+        UserVO user = new UserVO().setId(id).setUsername("username:" + id);
+        // 返回
+        return user;
+    }
+
+    /**
+     * 获得指定用户编号的用户
+     *
+     * @param id 用户编号
+     * @return 用户
+     */
+    @GetMapping("/get4")
+    public CommonResult get4(@RequestParam("id") Integer id) {
+        // 查询用户
+        UserVO user = new UserVO().setId(id).setUsername("username:" + id);
+        // 返回
+        return CommonResult.success(user);
+    }
+
     @Autowired
     private UserService userService;
 
@@ -134,6 +181,22 @@ public class UserController {
         Boolean success = false;
         // 返回是否更新成功
         return Mono.just(success);
+    }
+
+    /**
+     * 测试抛出 NullPointerException 异常
+     */
+    @GetMapping("/exception-01")
+    public UserVO exception01() {
+        throw new NullPointerException("没有粗面鱼丸");
+    }
+
+    /**
+     * 测试抛出 ServiceException 异常
+     */
+    @GetMapping("/exception-02")
+    public UserVO exception02() {
+        throw new ServiceException(CommonCode.USER_NOT_FOUND);
     }
 
 }
