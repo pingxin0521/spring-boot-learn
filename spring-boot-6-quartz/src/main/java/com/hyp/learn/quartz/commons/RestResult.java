@@ -18,7 +18,7 @@ import java.util.Collections;
 public class RestResult {
 
     private Integer code;
-    private String message;
+    private String msg;
     private Object data;
 
     public static RestResult of(Object data) {

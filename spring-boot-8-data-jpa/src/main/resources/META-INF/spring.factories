@@ -1,0 +1,3 @@
+org.springframework.context.ApplicationContextInitializer=com.hyp.learn.jpa.listener.HelloApplicationContextInitializer
+org.springframework.boot.SpringApplicationRunListener=\
+  com.hyp.learn.jpa.listener.HelloSpringApplicationRunListener

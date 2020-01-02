@@ -25,6 +25,10 @@
         <module>spring-boot-4-WebFlux</module>
         <module>spring-boot-5-redis</module>
         <module>spring-boot-6-quartz</module>
+        <module>spring-boot-7-data</module>
+        <module>spring-boot-8-data-jpa</module>
+        <module>spring-boot-9-zookeeper</module>
+        <module>spring-boot-10-starter</module>
 
     </modules>
 

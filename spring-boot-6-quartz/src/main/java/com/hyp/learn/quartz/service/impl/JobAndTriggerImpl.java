@@ -2,9 +2,10 @@ package com.hyp.learn.quartz.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hyp.learn.quartz.dao.JobAndTriggerMapper;
-import com.hyp.learn.quartz.entity.JobAndTrigger;
+import com.hyp.learn.quartz.dao.QuartzMapper;
+import com.hyp.learn.quartz.entity.QuartzEntity;
 import com.hyp.learn.quartz.service.IJobAndTriggerService;
+import com.hyp.learn.quartz.vo.QuartzVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,13 @@ import java.util.List;
 public class JobAndTriggerImpl implements IJobAndTriggerService {
 
     @Autowired
-    private JobAndTriggerMapper jobAndTriggerMapper;
+    private QuartzMapper quartzMapper;
 
     @Override
-    public PageInfo<JobAndTrigger> getJobAndTriggerDetails(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<JobAndTrigger> list = jobAndTriggerMapper.getJobAndTriggerDetails();
-        PageInfo<JobAndTrigger> page = new PageInfo<JobAndTrigger>(list);
+    public PageInfo<QuartzEntity> getJobAndTriggerDetails(QuartzVO quartz) {
+        PageHelper.startPage(quartz.getPageNum(), quartz.getPageSize());
+        List<QuartzEntity> list = quartzMapper.getJobAndTriggerDetails();
+        PageInfo<QuartzEntity> page = new PageInfo<QuartzEntity>(list);
         return page;
     }
 

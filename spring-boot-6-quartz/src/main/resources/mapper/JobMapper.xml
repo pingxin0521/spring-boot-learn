@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hyp.learn.quartz.dao.JobAndTriggerMapper">
+<mapper namespace="com.hyp.learn.quartz.dao.QuartzMapper">
 
-    <select id="getJobAndTriggerDetails" resultType="com.hyp.learn.quartz.entity.JobAndTrigger">
-			SELECT
-				qrtz_job_details.JOB_NAME,
-				qrtz_job_details.JOB_GROUP,
-				qrtz_job_details.JOB_CLASS_NAME,
-				qrtz_triggers.TRIGGER_NAME,
-				qrtz_triggers.TRIGGER_GROUP,
-				qrtz_cron_triggers.CRON_EXPRESSION,
-				qrtz_cron_triggers.TIME_ZONE_ID
-			FROM
-				qrtz_job_details
-			JOIN qrtz_triggers
-			JOIN qrtz_cron_triggers ON qrtz_job_details.JOB_NAME = qrtz_triggers.JOB_NAME
-			AND qrtz_triggers.TRIGGER_NAME = qrtz_cron_triggers.TRIGGER_NAME
-			AND qrtz_triggers.TRIGGER_GROUP = qrtz_cron_triggers.TRIGGER_GROUP
+    <select id="getJobAndTriggerDetails" resultType="com.hyp.learn.quartz.entity.QuartzEntity">
+        SELECT job.JOB_NAME,
+               job.JOB_GROUP,
+               job.JOB_CLASS_NAME,
+               job.DESCRIPTION,
+               job.JOB_NAME  as oldJobName,
+               job.JOB_GROUP as oldJobGroup,
+               tri.TRIGGER_NAME,
+               tri.TRIGGER_GROUP,
+               tri.TRIGGER_STATE,
+
+               cron.CRON_EXPRESSION,
+               cron.TIME_ZONE_ID
+        FROM QRTZ_JOB_DETAILS job
+                 LEFT JOIN QRTZ_TRIGGERS AS tri
+                           ON job.JOB_NAME = tri.JOB_NAME
+                 LEFT JOIN QRTZ_CRON_TRIGGERS AS cron ON cron.TRIGGER_NAME = tri.TRIGGER_NAME
+            AND tri.TRIGGER_GROUP = cron.TRIGGER_GROUP
     </select>
 
 </mapper>

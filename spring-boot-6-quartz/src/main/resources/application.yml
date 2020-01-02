@@ -22,7 +22,6 @@ logging:
     com.alibaba.druid: debug
     com.github.trang: debug
     executableSql: debug
-
 spring:
   application:
     name: quartz
@@ -31,15 +30,18 @@ spring:
   output:
     ansi:
       enabled: detect
-  h2:
-    console:
-      enabled: true
-      settings:
-        trace: true
+#  h2:
+#    console:
+#      enabled: true
+#      settings:
+#        trace: true
   datasource:
+#    url: jdbc:mysql://localhost:3306/quartz?characterEncoding=utf-8&useSSL=false
     url: jdbc:h2:mem:quartz
     username: root
+#    password: 123456
     password: Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       max-wait: 30000
       query-timeout: 10
@@ -114,6 +116,8 @@ spring:
     parser:
       allow_unquoted_control_chars: true
       allow_single_quotes: true
+  thymeleaf:
+    cache: false
 
 
 mybatis:
@@ -128,3 +132,6 @@ mybatis:
 server:
   servlet:
     context-path: /quartz
+  port: 8080
+
+

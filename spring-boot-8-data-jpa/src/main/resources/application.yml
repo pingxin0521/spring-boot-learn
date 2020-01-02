@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      #根据实体类配置生成对数据库的修改
+      ddl-auto: update
+      naming:
+        #数据库下划线《--》实体类驼峰
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    #显示sql语句
+    show-sql: true
+
+  jackson:
+    #json驼峰转下划线
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES

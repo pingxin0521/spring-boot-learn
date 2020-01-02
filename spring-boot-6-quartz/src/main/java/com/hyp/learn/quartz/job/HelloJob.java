@@ -1,6 +1,8 @@
 package com.hyp.learn.quartz.job;
 
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.JobDataMap;
+import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
@@ -24,9 +26,32 @@ public class HelloJob extends QuartzJobBean {
     }
 
     @Override
-    public void executeInternal(JobExecutionContext context)
-            throws JobExecutionException {
-        log.error("Hello Job执行时间: " + new Date());
+    protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+        // 获取参数
+        JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
+        // 业务逻辑 ...
+        System.out.println("大吉大利、今晚吃鸡-01-测试集群模式");
 
+        System.out.println("Hello!  HelloJob is executing."+new Date() );
+        //取得job详情
+        JobDetail jobDetail = context.getJobDetail();
+        // 取得job名称
+        String jobName = jobDetail.getClass().getName();
+        log.info("Name: " + jobDetail.getClass().getSimpleName());
+        //取得job的类
+        log.info("Job Class: " + jobDetail.getJobClass());
+        //取得job开始时间
+        log.info(jobName + " fired at " + context.getFireTime());
+        //取得job下次触发时间
+        log.info("Next fire time " + context.getNextFireTime());
+
+        JobDataMap dataMap =  jobDetail.getJobDataMap();
+
+        log.info("itstyle: " + dataMap.getString("itstyle"));
+        log.info("blog: " + dataMap.getString("blog"));
+        String[] array = (String[]) dataMap.get("data");
+        for(String str:array){
+            log.info("data: " + str);
+        }
     }
 }

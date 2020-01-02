@@ -12,15 +12,45 @@
 - ElementUI
 - MySql数据库
 - Druid数据库连接池:<https://github.com/drtrang/druid-spring-boot>
+- thymeleaf
+- redis:基于redis分布式锁实现quartz调度集群
 
 对于Cron表达式，可以去[在线Cron表达式生成器](http://cron.qqe2.com/)根据自己的需求自动生成。
 
+
+
 #### 运行方法
 
-Spring Boot工程已经集成了服务器。右键点击DemoApplication.java -> Run As -> Java Application即可运行工程。默认端口为8080，启动后在浏览器地址栏输入<http://localhost:8080/quartz/JobManager.html>就可以看到效果。
+Spring Boot工程已经集成了服务器。右键点击DemoApplication.java -> Run As -> Java Application即可运行工程。默认端口为8080，启动后在浏览器地址栏输入<http://localhost:8080/quartz/manager>就可以看到效果。
 
 [常用数据库脚本](./dbTables),quartz版本为2.2.3,可以选择对应的sql脚本执行，用作存储定是个hi任务数据
 
+运行Application main方法启动项目，项目启动会自动创建一个测试任务 见：com.itstyle.quartz.config.TaskRunner.java。
+- 项目访问地址：<http://localhost:8080/quartz>
+
+
+
+#### 项目截图
+
+
+![表达式生成器](https://gitee.com/uploads/images/2018/0402/180033_437a1186_87650.png "7.png")
+
+#### 集群测试
+
+打开quartz集群配置：
+```
+# 打开集群配置
+spring.quartz.properties.org.quartz.jobStore.isClustered:true
+# 设置集群检查间隔20s
+spring.quartz.properties.org.quartz.jobStore.clusterCheckinInterval = 2000 
+```
+
+测试命令
+```bash
+mvn clean package
+java -Dserver.port=8081 -jar target/spring-boot-6-quartz.jar 
+java -Dserver.port=8081-jar  target/spring-boot-6-quartz.jar 
+```
 
 ### 数据库表
 

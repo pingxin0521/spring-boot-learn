@@ -1,13 +1,14 @@
 package com.hyp.learn.quartz;
 
-import com.hyp.learn.quartz.job.InternalJob;
 import com.hyp.learn.quartz.service.impl.QuartzService;
+import com.hyp.learn.quartz.vo.QuartzVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author hyp
@@ -22,27 +23,36 @@ public class QuartzCommandLineRunner implements CommandLineRunner {
     @Autowired
     QuartzService quartzService;
 
+
     @Override
     public void run(String... args) throws Exception {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("name", 1);
-        quartzService.deleteJob("job", "test");
-        quartzService.addJob(InternalJob.class, "job", "test", "0 * * * * ?", map);
 
-        map.put("name", 2);
-        quartzService.deleteJob("job2", "test");
-        quartzService.addJob(InternalJob.class, "job2", "test", "10 * * * * ?", map);
+        Map<String, Object> data = new HashMap<>();
 
-        map.put("name", 3);
-        quartzService.deleteJob("job3", "test2");
-        quartzService.addJob(InternalJob.class, "job3", "test2", "15 * * * * ?", map);
+        data.put("itstyle", "平心欢迎你");
+        data.put("blog", "https://pingxin0521.coding.me/");
+        data.put("data", new String[]{"张三", "李四"});
 
-        map.put("name", 13);
-        quartzService.deleteJob("job4", "test2");
-        quartzService.addJob(InternalJob.class, "job4", "test2", "15 * * * * ?", map);
-        map.put("name", 14);
-        quartzService.deleteJob("job5", "test2");
-        quartzService.addJob(InternalJob.class, "job5", "test2", "15 * * * * ?", map);
+        QuartzVO quartz = new QuartzVO();
+        quartz.setJobName("test01");
+        quartz.setJobGroup("test");
+        quartz.setDescription("测试任务");
+        quartz.setJobClassName("com.hyp.learn.quartz.job.InternalJob");
+        quartz.setCronExpression("0 * * * * ?");
+        quartzService.addJob(quartz, data);
+
+
+        quartz.setJobName("test02");
+        quartz.setJobGroup("test");
+        quartz.setCronExpression("5 */5 * * * ?");
+        quartzService.addJob(quartz, data);
+
+        quartz.setJobName("test03");
+        quartz.setJobGroup("test1");
+        quartz.setJobClassName("com.hyp.learn.quartz.job.HelloJob");
+        quartz.setCronExpression("25 */5 * * * ?");
+        quartzService.addJob(quartz, data);
+
 
     }
 }

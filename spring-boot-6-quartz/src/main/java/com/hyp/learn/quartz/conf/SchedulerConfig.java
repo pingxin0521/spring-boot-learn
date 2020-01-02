@@ -1,6 +1,8 @@
 package com.hyp.learn.quartz.conf;
 
+import com.hyp.learn.quartz.listener.SimpleTriggerListener;
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,12 +53,19 @@ public class SchedulerConfig {
     @Autowired
     private SchedulerFactoryBean factoryBean;
 
+    @Autowired
+    private SimpleTriggerListener simpleTriggerListener;
+
     /*
      * 通过SchedulerFactoryBean获取Scheduler的实例
      */
     @Bean(name = "Scheduler")
-    public Scheduler scheduler() throws IOException {
-        return factoryBean.getScheduler();
+    public Scheduler scheduler() throws IOException, SchedulerException {
+        Scheduler scheduler = factoryBean.getScheduler();
+        scheduler.getListenerManager()
+                .addTriggerListener(simpleTriggerListener);
+        System.out.println(scheduler.getListenerManager().getTriggerListeners());
+        return scheduler;
     }
 
 
