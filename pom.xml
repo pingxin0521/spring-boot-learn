@@ -29,6 +29,11 @@
         <module>spring-boot-8-data-jpa</module>
         <module>spring-boot-9-zookeeper</module>
         <module>spring-boot-10-starter</module>
+        <module>spring-boot-11-cache</module>
+        <module>spring-boot-12-mq</module>
+        <module>spring-boot-13-actuator</module>
+        <module>spring-boot-14-es</module>
+        <module>spring-boot-15-scheduled</module>
 
     </modules>
 

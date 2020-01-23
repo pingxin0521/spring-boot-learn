@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:data
+    username: root
+    password:
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+  cache:
+    type: redis
+mybatis:
+  #  mapper-locations: mapper/*.xml
+  type-aliases-package: com.hyp.learn.cache.entity
+  configuration:
+    #自动驼峰命名规则( camel case )映射
+    map-underscore-to-camel-case: true
+
+server:
+  servlet:
+    context-path: /cache
+debug: true
