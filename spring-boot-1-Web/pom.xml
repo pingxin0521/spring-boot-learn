@@ -125,6 +125,8 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
+
+
         </plugins>
 
         <!--上面的配置就是Spring Boot Maven插件，Spring Boot Maven插件提供了许多方便的功能：-->

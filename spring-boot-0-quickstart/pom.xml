@@ -17,7 +17,9 @@
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
-
+    <properties>
+        <docker.image.prefix>springboot</docker.image.prefix>
+    </properties>
 
     <dependencies>
 
@@ -66,7 +68,6 @@
         <finalName>${artifactId}</finalName>
 
 
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -74,7 +75,32 @@
                 <configuration>
                     <fork>true</fork>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+            <!-- Docker maven plugin -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+            <!-- Docker maven plugin -->
         </plugins>
 
         <!--上面的配置就是Spring Boot Maven插件，Spring Boot Maven插件提供了许多方便的功能：-->
