@@ -40,6 +40,7 @@
         <module>spring-boot-17-mongodb</module>
         <module>spring-boot-18-docker</module>
         <module>spring-boot-19-shiro</module>
+        <module>spring-boot-20-sharing-jdbc</module>
 
 
     </modules>
