@@ -41,6 +41,8 @@
         <module>spring-boot-18-docker</module>
         <module>spring-boot-19-shiro</module>
         <module>spring-boot-20-sharing-jdbc</module>
+        <module>spring-boot-21-qrcode</module>
+        <module>spring-boot-22-websocket</module>
 
 
     </modules>
